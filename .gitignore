@@ -136,3 +136,4 @@ migrations
 # compiled scripts and styles
 wp-content/themes/custom/bundles
 wp-content/themes/twenty*
+bundles
