@@ -41,7 +41,7 @@ class WS_CDN_Url {
      */
     public function render_settings_field( $args ) {
         echo "<input aria-describedby='cdn-description' name='cdn_url' class='regular-text code' type='text' id='" . $args[0] . "' value='" . $args[1] . "'/>";
-        echo "<p id='cdn-description' class='description'>Input the url of the CDN, starting with https://, to use with this site or leave this field blank to bypass the CDN.";
+        echo "<p id='cdn-description' class='description'>Input the url of the CDN, starting with https://, to use with this site or leave this field blank to bypass the CDN.</p>";
     }
 
     /**
