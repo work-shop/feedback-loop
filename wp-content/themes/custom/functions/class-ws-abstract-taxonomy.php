@@ -30,7 +30,7 @@ abstract class WS_Taxonomy {
                     'public' => $public,
                     'show_in_rest' => true,
                     'show_tag_cloud' => false,
-                    'show_in_quick_edit' => false,
+                    'show_in_quick_edit' => true,
                     'show_admin_column' => true,
                     'hierarchical' => true,
                     'capabilities' => array(

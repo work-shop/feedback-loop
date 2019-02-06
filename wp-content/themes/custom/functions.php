@@ -8,6 +8,7 @@ require_once( __ROOT__ . '/functions/class-ws-abstract-taxonomy.php' );
 
 require_once( __ROOT__ . '/functions/post-types/prompts/class-ws-prompt.php' );
 require_once( __ROOT__ . '/functions/taxonomies/artworks/class-ws-artwork.php' );
+require_once( __ROOT__ . '/functions/taxonomies/prompt-statuses/class-ws-prompt-status.php' );
 
 require_once( __ROOT__ . '/functions/class-ws-site-admin.php' );
 require_once( __ROOT__ . '/functions/class-ws-site-init.php' );

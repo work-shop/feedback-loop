@@ -21,8 +21,9 @@ class WS_Site {
     public function register_post_types_and_taxonomies() {
 
         WS_Prompt::register();
-        
+
         WS_Artwork::register();
+        WS_Prompt_Status::register();
 
     }
 
