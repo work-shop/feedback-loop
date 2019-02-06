@@ -24,9 +24,10 @@ class WS_Site_Admin {
 
         remove_meta_box("dashboard_primary", "dashboard", "side");   // WordPress.com blog
         remove_meta_box("dashboard_secondary", "dashboard", "side"); // Other WordPress news
-        remove_post_type_support('page', 'comments');
+        add_post_type_support('prompts', 'comments');
         remove_menu_page('index.php');  // Remove the dashboard link from the Wordpress sidebar.
-        remove_menu_page('edit-comments.php');   // Remove the comments link from the Wordpress sidebar.
+        //remove_menu_page('edit-comments.php');   // Remove the comments link from the Wordpress sidebar.
+        remove_menu_page('edit.php'); // remove default post type.
 
         if ( !current_user_can( 'administrator' ) ) {
 

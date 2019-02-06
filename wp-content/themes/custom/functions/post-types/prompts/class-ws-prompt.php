@@ -1,24 +1,25 @@
 <?php
 
-class WS_Custom_Post extends WS_Custom_Post_Type {
+class WS_Prompt extends WS_Custom_Post_Type {
 
-    public static $slug = 'custom';
+    public static $slug = 'prompts';
 
-    public static $singular_name = 'Custom Post';
+    public static $singular_name = 'Prompt';
 
-    public static $plural_name = 'Custom Posts';
+    public static $plural_name = 'Prompts';
 
     public static $post_options = array(
-        'menu_icon'                 => 'dashicons-products',
+        'menu_icon'                 => 'dashicons-clipboard',
         'hierarchical'              => false,
-        'has_archive'               => true,
+        'has_archive'               => false,
         'menu_position'             => 4,
         'supports'                  => array(
                                         'title',
-                                        'revisions'
+                                        'revisions',
+                                        'comments'
                                     ),
         'rewrite'                   => array(
-                                        'slug' => 'custom-categories',
+                                        'slug' => 'prompts',
                                         'with_front' => false,
                                         'feeds' => true,
                                         'pages' => true

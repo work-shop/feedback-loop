@@ -3,6 +3,11 @@
 define( '__ROOT__', dirname( __FILE__ ) );
 
 require_once( __ROOT__ . '/functions/library/class-ws-cdn-url.php');
+require_once( __ROOT__ . '/functions/class-ws-abstract-custom-post-type.php' );
+require_once( __ROOT__ . '/functions/class-ws-abstract-taxonomy.php' );
+
+require_once( __ROOT__ . '/functions/post-types/prompts/class-ws-prompt.php' );
+require_once( __ROOT__ . '/functions/taxonomies/artworks/class-ws-artwork.php' );
 
 require_once( __ROOT__ . '/functions/class-ws-site-admin.php' );
 require_once( __ROOT__ . '/functions/class-ws-site-init.php' );
