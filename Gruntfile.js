@@ -7,7 +7,7 @@ var sass = require('node-sass');
 const bourbon_includePaths = require('node-bourbon').includePaths;
 const slick_includePaths = path.join(__dirname,'node_modules','slick-carousel', 'slick');
 
-const theme_root = '.';
+const theme_root = 'wp-content/themes/custom';
 const output_dir = path.join( theme_root, 'bundles' );
 
 const scss_main_dir = path.join( theme_root, 'scss' );

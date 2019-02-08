@@ -21,6 +21,7 @@ import { livereload } from './livereload-client.js';
 import { stickyNav } from './sticky-nav.js';
 import { dropdowns } from './dropdowns.js';
 import { menuToggle } from './menu-toggle.js';
+import { responsesToggle } from './responses-toggle.js';
 
 //must use 
 livereload();
@@ -38,3 +39,4 @@ sitewideAlert();
 stickyNav(config.stickyNav);
 dropdowns(config.dropdowns);
 menuToggle(config.menuToggle);
+responsesToggle();

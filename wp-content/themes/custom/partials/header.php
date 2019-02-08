@@ -63,21 +63,7 @@
 
 	<?php wp_head(); ?>
 
-	<?php
-	$sitewide_alert_on = get_field('show_sitewide_alert', 'option');
-	$sitewide_alert_class = 'sitewide-alert-off';
-	if( $sitewide_alert_on === true ):
-		if( !isset($_COOKIE['ws_show_sitewide_alert']) || $_COOKIE['ws_show_sitewide_alert'] === false ):
-			$sitewide_alert_class = 'sitewide-alert-on';
-			$show_sitewide_alert = true;
-		endif;
-	endif;
-	?>
-
 </head>
-<body <?php body_class('loading before-scroll modal-off menu-closed dropdown-off mobile-dropdown-off curve-off ' . $sitewide_alert_class . ' '); ?>>
-
-	<?php get_template_part('partials/sitewide_alert'); ?>
-	<?php get_template_part('partials/nav'); ?>
+<body <?php body_class('loading before-scroll modal-off menu-closed dropdown-off mobile-dropdown-off responses-closed '); ?>>
 
 	<main id="content">

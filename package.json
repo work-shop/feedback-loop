@@ -1,7 +1,7 @@
 {
-  "name": "mit-gov-lab-website",
+  "name": "feedback-loop",
   "version": "1.0.0",
-  "description": "MIT GOV/LAB Website",
+  "description": "Newport Art Museum Feedback Loop",
   "author": "Work-Shop (http://workshop.co)",
   "license": "ISC",
   "paths": {
@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/work-shop/mit-gov-lab-website.git"
+    "url": "git+https://github.com/work-shop/feedback-loop.git"
   },
   "bugs": {
-    "url": "https://github.com/work-shop/mit-gov-lab-website/issues"
+    "url": "https://github.com/work-shop/feedback-loop/issues"
   },
-  "homepage": "https://github.com/work-shop/mit-gov-lab-website#readme",
+  "homepage": "https://github.com/work-shop/feedback-loop#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "grunt",
