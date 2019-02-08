@@ -22,8 +22,9 @@ import { stickyNav } from './sticky-nav.js';
 import { dropdowns } from './dropdowns.js';
 import { menuToggle } from './menu-toggle.js';
 import { responsesToggle } from './responses-toggle.js';
+import { submissionWorkflow } from './submission-workflow.js';
 
-//must use 
+//must use
 livereload();
 loading(config.loading);
 linksNewtab(config.linksNewtab);
@@ -40,3 +41,4 @@ stickyNav(config.stickyNav);
 dropdowns(config.dropdowns);
 menuToggle(config.menuToggle);
 responsesToggle();
+submissionWorkflow();
