@@ -11,7 +11,11 @@ class WS_Site {
 
         add_action('wp_enqueue_scripts', array( $this, 'enqueue_scripts_and_styles' ) );
 
+        // NOTE: This filter enables anonymous comments via the REST API.
+        add_filter('rest_allow_anonymous_comments', '__return_true');
+
         add_filter('show_admin_bar', '__return_false');
+
 
         new WS_CDN_Url();
 

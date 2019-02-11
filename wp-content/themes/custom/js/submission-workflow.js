@@ -2,16 +2,20 @@
 
 
 import { gatherErrors, getPriorityErrors } from './submission-errors.js';
-import { submitRequest } from './submission-ajax.js';
+import { WPRequestManager } from './submission-ajax.js';
 
 const inputTextareaId = '#feedback-input-textarea';
 const nameFieldId = '#feedback-input-name';
 const emailFieldId = '#feedback-input-email';
 const submitButtonId = '#feedback-input-submit';
 
+var requestManager = null;
 
 function submissionWorkflow() {
-    $( document ).ready( function() { $( submitButtonId ).on( 'click', handleSubmitRequest ); } );
+    $( document ).ready( function() {
+        requestManager = new WPRequestManager();
+        $( submitButtonId ).on( 'click', handleSubmitRequest );
+    } );
 }
 
 function gatherContentFromForm() {
@@ -32,7 +36,7 @@ function handleSubmitRequest() {
 
     } else {
 
-        submitRequest( content );
+        requestManager.submitRequest( content );
 
     }
 
