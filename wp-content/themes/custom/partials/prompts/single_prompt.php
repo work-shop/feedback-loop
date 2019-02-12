@@ -26,16 +26,16 @@
 	</section>
 	<section id="feedback-input">
 		<div id="feedback-input-top">
-			<textarea id="feedback-input-textarea" placeholder="Tap here to write your response">a</textarea>
+			<textarea id="feedback-input-textarea" placeholder="Tap here to write your response"></textarea>
 		</div>
 		<div id="feedback-input-bottom">
 			<div class="row">
 				<div id="feedback-input-name-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-name" type="text" placeholder="Your Name" value='a'/>
+					<input id="feedback-input-name" type="text" placeholder="Your Name"/>
 					<a href="#" id="feedback-input-name-helper" class="modal-trigger feedback-input-helper">?</a>
 				</div>
 				<div id="feedback-input-email-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-email" type="email" placeholder="Your Email" value='a'/>
+					<input id="feedback-input-email" type="email" placeholder="Your Email"/>
 					<a href="#" id="feedback-input-email-helper" class="modal-trigger feedback-input-helper">?</a>
 				</div>
 				<div id="feedback-input-submit-container" class="feedback-input-bottom-col col">

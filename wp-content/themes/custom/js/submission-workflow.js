@@ -5,10 +5,12 @@ import { WPRequestManager } from './submission-request.js';
 import { SubmissionErrors } from './submission-errors.js';
 import { SubmissionSuccess } from './submission-success.js';
 
-const inputTextareaId = '#feedback-input-textarea';
-const nameFieldId = '#feedback-input-name';
-const emailFieldId = '#feedback-input-email';
-const submitButtonId = '#feedback-input-submit';
+const inputSelectors = {
+    inputTextareaId: '#feedback-input-textarea',
+    nameFieldId: '#feedback-input-name',
+    emailFieldId: '#feedback-input-email',
+    submitButtonId: '#feedback-input-submit'
+};
 
 var requestManager = null;
 var errorsManager = null;
@@ -17,19 +19,20 @@ var successManager = null;
 function submissionWorkflow() {
     $( document ).ready( function() {
 
-        errorsManager = new SubmissionErrors();
-        successManager = new SubmissionSuccess();
-        requestManager = new WPRequestManager(errorsManager, successManager);
+        errorsManager = new SubmissionErrors( inputSelectors);
+        successManager = new SubmissionSuccess(inputSelectors);
+        requestManager = new WPRequestManager(errorsManager, successManager, inputSelectors);
 
-        $( submitButtonId ).on( 'click', handleSubmitRequest );
+        $( inputSelectors.submitButtonId ).on( 'click', handleSubmitRequest );
+
     } );
 }
 
 function gatherContentFromForm() {
     return {
-        maybeResponse: $( inputTextareaId ).val(),
-        maybeName: $( nameFieldId ).val(),
-        maybeEmail: $( emailFieldId ).val()
+        maybeResponse: $( inputSelectors.inputTextareaId ).val(),
+        maybeName: $( inputSelectors.nameFieldId ).val(),
+        maybeEmail: $( inputSelectors.emailFieldId ).val()
     };
 }
 
