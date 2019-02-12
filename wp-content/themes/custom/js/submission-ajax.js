@@ -2,19 +2,12 @@
 
 const WPAPI = require('wpapi');
 const rest_endpoint = 'http://localhost:8080/wp-json/';
-const username = 'dev';
-const password = 'Cmi!!2012'
-
 
 class WPRequestManager {
 
     constructor() {
         console.log( 'WPRequestManager constructor invoked!' );
-        this.wp = new WPAPI({
-            endpoint: rest_endpoint,
-            username: username,
-            password: password
-        });
+        this.wp = new WPAPI({ endpoint: rest_endpoint });
     }
 
     submitRequest( content ) {
@@ -25,9 +18,9 @@ class WPRequestManager {
             author_email: content.maybeEmail,
             author_name: content.maybeName,
             content: content.maybeResponse
-        }).then(function( createdAComment ) {
+        }).then(function( response ) {
 
-            console.log( createdAComment );
+            console.log( response );
 
         }).catch(function( error ){
 
