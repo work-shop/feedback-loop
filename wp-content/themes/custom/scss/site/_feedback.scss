@@ -146,12 +146,9 @@ $errored-elements-background-color: red;
 		top: 0;
 		left: 0;
 		width: 100%;
-<<<<<<< HEAD
 		height: $input-top-height;	
-=======
 		height: $input-top-height;
 		//padding: $input-padding;
->>>>>>> 3c627c1d9eebeb30ab40d2c73863cd779ac5adc3
 		//border: 1px solid red;
 
 		textarea{
@@ -590,7 +587,6 @@ $modal-padding: 60px;
 
 }
 
-}
 
 #feedback-input .errors {
     border-left: 4px solid $errored-elements-background-color !important;
