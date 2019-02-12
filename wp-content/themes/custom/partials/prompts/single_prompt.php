@@ -45,6 +45,9 @@
 				</div>
 			</div>
 		</div>
+
+        <?php get_template_part('partials/prompts/thankyou_pane'); ?>
+
 	</section>
 	<section id="feedback-responses" class="closed">
 		<div class="feedback-responses-mask feedback-responses-mask-top">

@@ -340,7 +340,7 @@ $errored-elements-background-color: red;
 			font-family: modern_pictograms_proregular;
 		}
 
-		
+
 	}
 
 
@@ -376,6 +376,25 @@ $errored-elements-background-color: red;
     }
 }
 
+
+#feedback-input-thank-you-pane {
+    position: absolute;
+    top:0px;
+    padding:$prompt-padding;
+    width:100%;
+    height:100%;
+    background-color: $tan;
+
+    transition: transform $responses-transition-duration $responses-transition-duration;
+
+    &.inactive {
+        transform:translateX(-100%);
+    }
+
+    &.active {
+        transform:translateX(0%);
+    }
+}
 
 
 /* BODY CLASSES */
@@ -436,7 +455,7 @@ body.focus-on{
 .modal{
 
 	padding: $modal-padding;
-	
+
 
 }
 
