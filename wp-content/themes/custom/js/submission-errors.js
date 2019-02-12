@@ -1,59 +1,11 @@
 'use strict';
 
-const errorChecks = [
+import { uiErrorChecks, apiErrorChecks } from './submission-error-types.js';
 
-    // TODO: Add XSS and SQL Injection Guards here?
 
-    function emptyText( content ) { return {
-        error: content.maybeResponse.length === 0,
-        message: 'Whoops! Looks like you haven\'t entered a response yet.',
-        priority: 0
-    }; },
-
-    function emptyName( content ) { return {
-        error: content.maybeName.length === 0,
-        message: 'Whoops! Looks like you haven\'t entered a name.',
-        priority: 1
-    };},
-
-    function emptyEmail( content ) {return {
-        error: content.maybeEmail.length === 0,
-        message: 'Whoops! Looks like you haven\'t added your email.',
-        priority: 1
-    };}
-
-    // TODO: Add softer guards (length, email checks) here, with
-
-];
-
-function initialErrorState() {
-    return {
-        error: false,
-        blame: []
-    };
-}
-
-function gatherErrors( content ) {
-    return errorChecks.reduce( function( errorState, currentCheck ) {
-
-        let checkResult = currentCheck( content );
-
-        if ( checkResult.error ) {
-
-            return {
-                error: true,
-                blame: errorState.blame.concat( checkResult )
-            };
-
-        } else {
-
-            return errorState;
-
-        }
-
-    }, initialErrorState() );
-
-}
+const erroredClassName = 'errors';
+const inactiveClassName = 'inactive';
+const activeClassName = 'active';
 
 /**
  * `getPriorityErrors` takes an error aggregate, including an {error: Bool} and
@@ -66,7 +18,7 @@ function gatherErrors( content ) {
 // NOTE: assumes the array of errors is a ascending-sorted partially-ordered set in the priority key.
 
 function getPriorityErrors( errors ) {
-    if ( errors.blame.length === 0 ) { throw new Error('getLowestPriorityErrors received an empty error array!'); }
+    if ( errors.blame.length === 0 ) { throw new Error('getPriorityErrors received an empty error array!'); }
 
     console.log( errors );
 
@@ -76,4 +28,91 @@ function getPriorityErrors( errors ) {
 
 }
 
-export { gatherErrors, getPriorityErrors };
+
+class SubmissionErrors {
+
+    constructor() {
+        this.errorPaneSelector = '#error-pane';
+        this.errorPaneHeadingSelector = '#error-pane .error-header';
+        this.errorPaneTextSelector = '#error-pane .error-text';
+        this.errorPaneCloseButtonSelector = '#error-pane .error-pane-close-button';
+        this.errableElements = ['#feedback-input-textarea', '#feedback-input-name', '#feedback-input-email'];
+
+        $( this.errorPaneCloseButtonSelector ).on('click', this.hideErrorBox.bind( this ) );
+    }
+
+    initialErrorState() {
+        return {
+            error: false,
+            blame: []
+        };
+    }
+
+    gatherUIErrors( content ) {
+        let errors = uiErrorChecks.reduce( function( errorState, currentCheck ) {
+
+            let checkResult = currentCheck( content );
+
+            if ( checkResult.error ) {
+
+                return {
+                    error: true,
+                    blame: errorState.blame.concat( checkResult )
+                };
+
+            } else {
+
+                return errorState;
+
+            }
+
+        }, this.initialErrorState() );
+
+        if ( errors.error ) {
+            return getPriorityErrors( errors );
+        } else {
+            return [];
+        }
+
+    }
+
+    renderUIErrors( errors ) {
+        console.log( errors );
+        this.displayErrorBox( errors[0] );
+    }
+
+    renderAPIErrors( error ){
+        console.log( error );
+        this.displayErrorBox( apiErrorChecks[ error.message ] );
+    }
+
+    displayErrorBox( error ) {
+
+        let pane = $( this.errorPaneSelector );
+        let text = $( this.errorPaneTextSelector );
+
+        this.errableElements.forEach( function( selector ) { $( selector ).removeClass(erroredClassName);});
+
+        text.text( error.message );
+        pane.removeClass(inactiveClassName).addClass(activeClassName);
+        $( error.target ).addClass(erroredClassName);
+
+    }
+
+    hideErrorBox() {
+
+        let pane = $( this.errorPaneSelector );
+        let text = $( this.errorPaneTextSelector );
+
+        this.errableElements.forEach( function( selector ) { $( selector ).removeClass(erroredClassName);});
+        pane.removeClass(activeClassName).addClass(inactiveClassName);
+
+        text.text( '' );
+
+    }
+
+}
+
+
+
+export { SubmissionErrors };

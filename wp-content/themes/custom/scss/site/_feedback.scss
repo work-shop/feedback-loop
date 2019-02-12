@@ -38,6 +38,12 @@ $responses-padding-top-2x: $responses-padding-top * 2;
 $responses-mask-height: $responses-padding-top;
 $responses-arrow-size: 30px;
 
+$error-margin: 10px;
+$error-padding: $prompt-padding;
+$errors-transition-duration: .125s;
+$errors-background-color: red;
+$errored-elements-background-color: red;
+
 
 /* PROMPT */
 
@@ -140,7 +146,12 @@ $responses-arrow-size: 30px;
 		top: 0;
 		left: 0;
 		width: 100%;
+<<<<<<< HEAD
 		height: $input-top-height;	
+=======
+		height: $input-top-height;
+		//padding: $input-padding;
+>>>>>>> 3c627c1d9eebeb30ab40d2c73863cd779ac5adc3
 		//border: 1px solid red;
 
 		textarea{
@@ -335,7 +346,7 @@ $responses-arrow-size: 30px;
 	.response-slide-content{
 		line-height: 1.4;
 		font-size: 17px;
-		margin-bottom: 10px; 
+		margin-bottom: 10px;
 		position: relative;
 	}
 
@@ -383,7 +394,7 @@ $responses-arrow-size: 30px;
 			font-family: modern_pictograms_proregular;
 		}
 
-		
+
 	}
 
 
@@ -395,6 +406,49 @@ $responses-arrow-size: 30px;
 
 }
 
+/* ERRORS */
+#error-pane{
+    position: absolute;
+    padding: $error-padding;
+    top:0vh;
+
+    width:100%;
+    height:25vh;
+    z-index: 1000;
+
+    transition: transform $errors-transition-duration $errors-transition-duration;
+
+    background-color:$errors-background-color;
+
+
+    &.inactive {
+        transform: translateY(-100%);
+    }
+
+    &.active {
+        transform: translateY(0%);
+    }
+}
+
+
+#feedback-input-thank-you-pane {
+    position: absolute;
+    top:0px;
+    padding:$prompt-padding;
+    width:100%;
+    height:100%;
+    background-color: $tan;
+
+    transition: transform $responses-transition-duration $responses-transition-duration;
+
+    &.inactive {
+        transform:translateX(-100%);
+    }
+
+    &.active {
+        transform:translateX(0%);
+    }
+}
 
 
 /* BODY CLASSES */
@@ -470,6 +524,7 @@ $modal-padding: 60px;
 	transform: scale(0);
 	padding: $modal-padding;
 
+
 	&.on{
 		transition: all $modal-transition;
 		opacity: 1;
@@ -535,6 +590,8 @@ $modal-padding: 60px;
 
 }
 
+}
 
-
-
+#feedback-input .errors {
+    border-left: 4px solid $errored-elements-background-color !important;
+}

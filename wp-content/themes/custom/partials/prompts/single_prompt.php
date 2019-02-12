@@ -1,10 +1,11 @@
-<div id="feedback">
+<div id="feedback" data-prompt-id="<?php echo get_the_ID(); ?>">
 	<section id="feedback-prompt">
 		<div id="feedback-about-button">
 			<a href="#" class="modal-toggle" data-modal-target="modal-about">
 				About Feedback Loop
 			</a>
 		</div>
+        <?php get_template_part('partials/prompts/error_pane'); ?>
 		<div id="feedback-prompt-top">
 			<?php
 			$term_list = wp_get_post_terms($post->ID, 'artworks');
@@ -47,6 +48,9 @@
 				</div>
 			</div>
 		</div>
+
+        <?php get_template_part('partials/prompts/thankyou_pane'); ?>
+
 	</section>
 	<section id="feedback-responses" class="closed">
 		<div class="feedback-responses-mask feedback-responses-mask-top">
