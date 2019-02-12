@@ -2,7 +2,10 @@
 
 import { uiErrorChecks, apiErrorChecks } from './submission-error-types.js';
 
-
+/**
+ * These classes mark various ui states
+ * on the application.
+ */
 const erroredClassName = 'errors';
 const inactiveClassName = 'inactive';
 const activeClassName = 'active';
@@ -29,25 +32,45 @@ function getPriorityErrors( errors ) {
 }
 
 
+/**
+ * This method sets up a static initial state for the error
+ * object which is constructed by this class during the
+ * UI-error checking phase.
+ */
+function initialErrorState() {
+    return {
+        error: false,
+        blame: []
+    };
+}
+
+
 class SubmissionErrors {
 
+    /**
+     * The SubmissionErrors class is responsible for managing the error box, and
+     * highlighting the various input fields that can be affected by various
+     * errors that may come from the UI, or from the API.
+     */
     constructor() {
         this.errorPaneSelector = '#error-pane';
         this.errorPaneHeadingSelector = '#error-pane .error-header';
         this.errorPaneTextSelector = '#error-pane .error-text';
         this.errorPaneCloseButtonSelector = '#error-pane .error-pane-close-button';
         this.errableElements = ['#feedback-input-textarea', '#feedback-input-name', '#feedback-input-email'];
+        this.errorTimeout = 120000;
+        this.timeout = null;
 
         $( this.errorPaneCloseButtonSelector ).on('click', this.hideErrorBox.bind( this ) );
     }
 
-    initialErrorState() {
-        return {
-            error: false,
-            blame: []
-        };
-    }
 
+    /**
+     * This routine loops through the set of possible UI-errors defined by
+     * this application, and it checks to see whether any of the rules are
+     * violated. If it finds errors, it renders the errors to the screen,
+     * and prevents further propagation.
+     */
     gatherUIErrors( content ) {
         let errors = uiErrorChecks.reduce( function( errorState, currentCheck ) {
 
@@ -66,7 +89,7 @@ class SubmissionErrors {
 
             }
 
-        }, this.initialErrorState() );
+        }, initialErrorState() );
 
         if ( errors.error ) {
             return getPriorityErrors( errors );
@@ -76,16 +99,31 @@ class SubmissionErrors {
 
     }
 
+
+    /**
+     * This function displays the highest priority ui error
+     * in the error box.
+     */
     renderUIErrors( errors ) {
         console.log( errors );
         this.displayErrorBox( errors[0] );
     }
 
+
+    /**
+     * This function displays the api error that wordpress returned
+     * in the error box.
+     */
     renderAPIErrors( error ){
         console.log( error );
         this.displayErrorBox( apiErrorChecks[ error.message ] );
     }
 
+    /**
+     * This function handles displaying the error box,
+     * and populating it with the appropriate text that
+     * communicates the error.
+     */
     displayErrorBox( error ) {
 
         let pane = $( this.errorPaneSelector );
@@ -97,9 +135,20 @@ class SubmissionErrors {
         pane.removeClass(inactiveClassName).addClass(activeClassName);
         $( error.target ).addClass(erroredClassName);
 
+        this.timeout = setTimeout( this.hideErrorBox.bind( this ), this.errorTimeout );
+
     }
 
+    /**
+     * This function dismisses the error box, and clears
+     * any specific error indicators on the ui.
+     */
     hideErrorBox() {
+
+        if ( this.timeout !== null ) {
+            clearTimeout( this.timeout );
+            this.timeout = null;
+        }
 
         let pane = $( this.errorPaneSelector );
         let text = $( this.errorPaneTextSelector );
