@@ -37,15 +37,23 @@ const uiErrorChecks = [
 ];
 
 const apiErrorChecks = {
+
     'Invalid parameter(s): author_email': {
         message: 'Looks like you mis-entered your email address below!',
         priority: 1,
         target: '#feedback-input-email'
     },
+
     'Creating a comment requires valid author name and email values.': {
         message: 'Looks like you\'re missing a name an email!',
         priority: 1,
         target: '#feedback-input-name, #feedback-input-email'
+    },
+
+    'Duplicate comment detected; it looks as though you&#8217;ve already said that!': {
+        message: 'Looks like this bit of feedback was already posted!',
+        priority: 1,
+        target: '#feedback-input-textarea'
     }
 };
 
