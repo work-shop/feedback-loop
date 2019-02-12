@@ -22,6 +22,7 @@ import { stickyNav } from './sticky-nav.js';
 import { dropdowns } from './dropdowns.js';
 import { menuToggle } from './menu-toggle.js';
 import { responsesToggle } from './responses-toggle.js';
+import { ui } from './ui.js';
 
 //must use 
 livereload();
@@ -40,3 +41,4 @@ stickyNav(config.stickyNav);
 dropdowns(config.dropdowns);
 menuToggle(config.menuToggle);
 responsesToggle();
+ui();

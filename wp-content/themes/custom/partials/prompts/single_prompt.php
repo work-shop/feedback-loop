@@ -23,17 +23,17 @@
 	</section>
 	<section id="feedback-input">
 		<div id="feedback-input-top">
-			<textarea id="feedback-input-textarea" placeholder="Tap here to write your response"></textarea>
+			<textarea id="feedback-input-textarea" class="feedback-input" placeholder="Tap here to write your response"></textarea>
 		</div>
 		<div id="feedback-input-bottom">
 			<div class="row">
 				<div id="feedback-input-name-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-name" type="text" placeholder="Your Name" />
-					<a href="#" id="feedback-input-name-helper" class="modal-trigger feedback-input-helper">?</a>
+					<input id="feedback-input-name" class="feedback-input" type="text" placeholder="Your Name" />
+					<a href="#" id="feedback-input-name-helper" class="modal-toggle feedback-input-helper" data-modal-target="modal-about">?</a>
 				</div>
 				<div id="feedback-input-email-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-email" type="email" placeholder="Your Email" />
-					<a href="#" id="feedback-input-email-helper" class="modal-trigger feedback-input-helper">?</a>
+					<input id="feedback-input-email" class="feedback-input" type="email" placeholder="Your Email" />
+					<a href="#" id="feedback-input-email-helper" class="modal-toggle feedback-input-helper">?</a>
 				</div>
 				<div id="feedback-input-submit-container" class="feedback-input-bottom-col col">
 					<div id="feedback-input-submit">
@@ -69,6 +69,9 @@
 		<div class="feedback-responses-mask feedback-responses-mask-bottom">			
 		</div>
 		<div class="feedback-responses-arrow feedback-responses-next">
+		</div>
+		<div id="feedback-responses-label">
+			<a href="#" class="feedback-responses-toggle">View Responses</a>
 		</div>
 	</section>
 </div>

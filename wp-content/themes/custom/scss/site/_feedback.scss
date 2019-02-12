@@ -14,7 +14,7 @@
 	height: 100%;
 }
 
-$left-width: 72%;
+$left-width: 69%;
 $right-width: 100% - $left-width;
 
 $prompt-height: 51%;
@@ -28,7 +28,7 @@ $input-top-height: calc(100% - 100px);
 $input-padding: $prompt-padding;
 
 $responses-color: darken($brand, 20%);
-$responses-closed-width: 60px;
+$responses-closed-width: 40px;
 $responses-transition-duration: .5s;
 $responses-padding-left: 30px;
 $responses-padding-left-2x: $responses-padding-left * 2;
@@ -105,6 +105,7 @@ $responses-arrow-size: 30px;
 			border-radius: 0;
 			animation: pulse 3s infinite;
 			transform-origin: top left;
+			@extend .italic;
 
 			&:focus{
 				border: none;
@@ -112,7 +113,7 @@ $responses-arrow-size: 30px;
 				background: lighten($tan,5%);
 				border-left: 10px solid $yellow;
 				transition: all .25s;
-				//animation: none;
+				animation: none;
 				//box-shadow: inset 0px 0px 3px $dark;
 			}
 		}
@@ -149,6 +150,7 @@ $responses-arrow-size: 30px;
 			width: calc(90% - 25px);
 			width: 100%;
 			border-radius: 0;
+			@extend .italic;
 
 			&:focus{
 				border: none;
@@ -277,7 +279,7 @@ $responses-arrow-size: 30px;
 	}
 
 	.response-slide{
-		padding: 10px 0px 10px 7px;
+		padding: 10px 7px 10px 7px;
 		margin-bottom: 25px;
 	}
 
@@ -308,6 +310,33 @@ $responses-arrow-size: 30px;
 	}
 
 
+	#feedback-responses-label{
+		position: fixed;
+		top: 50%;
+		width: 200px;
+		height: $responses-closed-width;
+		//outline: 1px solid white;
+		right: 0;
+		@extend .flex-center;
+		transform-origin: bottom right;
+		margin-top: -100px;
+		transform: rotate(-90deg) translate(50px,-0%);
+
+
+		a{
+			display: inline-block;
+			background: $yellow;
+			width: $responses-closed-width - 10px;
+			height: $responses-closed-width - 10px;
+			text-align: center;
+			line-height: $responses-closed-width - 10px;
+			border-radius: 100%;
+			font-family: modern_pictograms_proregular;
+		}
+
+		
+	}
+
 
 	*{
 		color: white;
@@ -316,6 +345,10 @@ $responses-arrow-size: 30px;
 
 
 }
+
+
+
+/* BODY CLASSES */
 
 
 body.responses-closed{
@@ -344,7 +377,36 @@ body.responses-closed{
 			opacity: 0;
 			right: $right-width;
 		}
+
+		#feedback-responses-label{
+			a{
+				@extend .uppercase;
+				@extend .bold;
+				font-size: 16px;
+				@extend .tracked-less;
+				display: inline-block;
+				background: none;
+				width: 100%;
+				@extend .font-main;
+			}
+		}
 	}
+
+
+}
+
+
+body.focus-on{
+	// border: 10px solid red;
+}
+
+
+/* MODALS */
+
+.modal{
+
+	padding: $modal-padding;
+	
 
 }
 
