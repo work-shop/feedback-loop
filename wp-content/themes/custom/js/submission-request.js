@@ -5,17 +5,32 @@ const rest_endpoint = 'http://localhost:8080/wp-json/';
 
 class WPRequestManager {
 
-    constructor( errorsManager, successManager ) {
-        console.log( 'WPRequestManager constructor invoked!' );
+    /**
+     * The WPRequestManager manager class handles submitting requests to
+     * the WP API, and dispatching success or error responses off to the
+     * classes that manage those funtions.
+     */
+    constructor( errorsManager, successManager, inputSelectors ) {
         this.wp = new WPAPI({ endpoint: rest_endpoint });
         this.errorsManager = errorsManager;
         this.successManager = successManager;
+        this.inputSelectors = inputSelectors;
     }
 
+
+    /**
+     * A simple method to extract the wordpress id of this particular
+     * prompt. We render this to an element on the dom at php-time.
+     */
     getPromptId() {
         return parseInt( $('#feedback').data('prompt-id'));
     }
 
+    /**
+     * This method handles hiding error boxes, and submitting the comment
+     * to the API. When the response comes back, this routine handles
+     * submitting the response to the appropriate managing class.
+     */
     submitRequest( content ) {
 
         var self = this;
