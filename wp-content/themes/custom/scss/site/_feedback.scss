@@ -17,19 +17,20 @@
 $left-width: 69%;
 $right-width: 100% - $left-width;
 
-$prompt-height: 51%;
-$prompt-top-height: 150px;
-$prompt-bottom-height: calc(100% - 100px);
-$prompt-padding: 30px;
+$prompt-height: 45%;
+$prompt-top-height: 140px;
+$prompt-bottom-height: calc(100% - #{$prompt-top-height});
+$prompt-padding: 50px;
+$about-button-width: 210px;
 
 $input-height: 100% - $prompt-height;
 $input-bottom-height: 100px;
 $input-top-height: calc(100% - 100px);
 $input-padding: $prompt-padding;
 
-$responses-color: darken($brand, 20%);
+$responses-color: darken($brand, 15%);
 $responses-closed-width: 40px;
-$responses-transition-duration: .5s;
+$responses-transition-duration: .3s;
 $responses-padding-left: 30px;
 $responses-padding-left-2x: $responses-padding-left * 2;
 $responses-padding-top: 100px;
@@ -55,8 +56,10 @@ $responses-arrow-size: 30px;
 		left: 0;
 		width: 100%;
 		height: $prompt-top-height;
-		padding: $prompt-padding;
-		padding-bottom: $prompt-padding/2;
+		padding: $prompt-padding/2 $prompt-padding;
+		//padding-bottom: $prompt-padding/2;
+
+		//border: 1px solid red;
 	}
 
 	#feedback-prompt-bottom{
@@ -66,10 +69,59 @@ $responses-arrow-size: 30px;
 		width: 100%;
 		height: $prompt-bottom-height;
 		padding: $prompt-padding;
-		padding-top: $prompt-padding/2;
+		//padding-top: $prompt-padding/2;
+		display: flex;
+		@extend .align-items-center;
 		//border: 1px solid yellow;
 	}
+
+	.feedback-prompt-artwork-title{
+		margin-bottom: 0;
+		width: calc(100% - #{$about-button-width});
+	}
+
+	.feedback-prompt-artwork-artist{
+		width: calc(100% - #{$about-button-width});
+		&:after{
+			content: '';
+			display: block;
+			width: 100px;
+			height: 2px;
+			background: white;
+			//position: absolute;
+			margin-top: $prompt-padding/2;
+			bottom: 0;
+			left: $prompt-padding;
+		}
+	}
+
+	.feedback-prompt-text{
+		font-size: 38px;
+		margin-bottom: 0;
+	}
 }
+
+#feedback-about-button{
+	background: transparentize(white, .0);
+	border-radius: $prompt-padding;
+	width: $about-button-width;
+	position: absolute;
+	top: $prompt-padding/2 + 10px;
+	right: $prompt-padding;
+	@extend .flex-center;
+	z-index: 3;
+
+	a{
+		padding: 8px 0px 5px 0px;
+		font-size: 14px;
+		@extend .uppercase;
+		@extend .bold;
+		@extend .tracked-less;
+		display: block;
+	}
+}
+
+
 
 
 /* INPUT */
@@ -89,7 +141,6 @@ $responses-arrow-size: 30px;
 		left: 0;
 		width: 100%;
 		height: $input-top-height;	
-		//padding: $input-padding;
 		//border: 1px solid red;
 
 		textarea{
@@ -134,17 +185,12 @@ $responses-arrow-size: 30px;
 		height: $input-bottom-height;
 		padding: $input-padding;
 		//border: 1px solid yellow;
-		//display: flex;
-
-		.feedback-input-bottom-col{
-
-		}
 
 		input{
 			border: none;
 			outline: none;
 			background: none;
-			border-bottom: 2px solid $yellow;
+			border-bottom: 2px solid $medium;
 			font-size: 15px;
 			padding: 7px 15px 7px 5px;
 			width: calc(90% - 25px);
@@ -182,12 +228,15 @@ $responses-arrow-size: 30px;
 			width: 90%;
 			background: $yellow;
 			text-align: center;
-			padding: 6px;
+			padding: 7px;
 			border-radius: 30px;
 			text-transform: uppercase;
 			@extend .bold;
 			@extend .tracked-less;
-			font-size: 15px;
+			font-size: 16px;
+			max-width: 180px;
+			margin: 0 auto;
+			color: white;
 		}
 	}
 
@@ -369,21 +418,21 @@ body.responses-closed{
 		.feedback-responses-arrow{
 			transition: opacity $responses-transition-duration/2, right 0s $responses-transition-duration/2;
 			opacity: 0;
-			right: $right-width;
+			right: -$right-width;
 		}
 
 		.feedback-responses-mask{
 			transition: opacity $responses-transition-duration/2, right 0s $responses-transition-duration/2;
 			opacity: 0;
-			right: $right-width;
+			right: -$right-width;
 		}
 
 		#feedback-responses-label{
 			a{
 				@extend .uppercase;
 				@extend .bold;
-				font-size: 16px;
-				@extend .tracked-less;
+				font-size: 15px;
+				@extend .tracked;
 				display: inline-block;
 				background: none;
 				width: 100%;
@@ -401,12 +450,88 @@ body.focus-on{
 }
 
 
+
+
+
 /* MODALS */
 
-.modal{
+$modal-margin: 20px;
+$modal-padding: 60px;
 
+.modal{
+	position: fixed;
+	width: calc(100% - #{$modal-margin*2});
+	height: calc(100% - #{$modal-margin*2});
+	top: $modal-margin;
+	left: $modal-margin;
+	z-index: 11;
+	opacity: 0;
+	transition: all $modal-transition;
+	transform: scale(0);
 	padding: $modal-padding;
+
+	&.on{
+		transition: all $modal-transition;
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	&.scroll{
+		overflow: scroll;
+	}
+}
+
+#modal-close{
+	position: fixed;
+	top: $modal-margin + $modal-padding;
+	right: $modal-margin + $modal-padding;
+	height: 35px;
+	width: 35px;
+	z-index: 12;
+	text-align: center;
+	background: $yellow;
+	border-radius: 100%;
+	//@include transition(transform $modal-transition);
+	@include transform(translate(200px, 0%));
+	opacity: 0;
 	
+
+	.icon:before{
+		font-size: 35px;
+		line-height: 30px;
+		color: white;
+		top: 3px;
+	}
+}
+
+#blanket{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 8;
+	left: 200%;
+	@include transition(opacity .1s);
+	opacity: 0;
+	background: transparentize($dark, .5);
+}
+
+//body styles
+.modal-on{
+	overflow: hidden;
+
+	#modal-close{
+		transition: all $modal-transition, transform 0s $modal-transition;
+		opacity: 1;
+		@include transform(translate(0px, 0%));
+	}
+
+
+	#blanket{
+		left: 0;
+		opacity: 1;
+	}
 
 }
 

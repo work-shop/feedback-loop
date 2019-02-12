@@ -1,5 +1,10 @@
 <div id="feedback">
 	<section id="feedback-prompt">
+		<div id="feedback-about-button">
+			<a href="#" class="modal-toggle" data-modal-target="modal-about">
+				About Feedback Loop
+			</a>
+		</div>
 		<div id="feedback-prompt-top">
 			<?php
 			$term_list = wp_get_post_terms($post->ID, 'artworks');
@@ -23,17 +28,17 @@
 	</section>
 	<section id="feedback-input">
 		<div id="feedback-input-top">
-			<textarea id="feedback-input-textarea" placeholder="Tap here to write your response">a</textarea>
+			<textarea id="feedback-input-textarea" class="feedback-input" placeholder="Tap here to write your response">a</textarea>
 		</div>
 		<div id="feedback-input-bottom">
 			<div class="row">
 				<div id="feedback-input-name-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-name" type="text" placeholder="Your Name" value='a'/>
-					<a href="#" id="feedback-input-name-helper" class="modal-trigger feedback-input-helper">?</a>
+					<input id="feedback-input-name" class="feedback-input" type="text" placeholder="Your Name" value='a'/>
+					<a href="#" id="feedback-input-name-helper" class="modal-toggle feedback-input-helper" data-modal-target="modal-name">?</a>
 				</div>
 				<div id="feedback-input-email-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-email" type="email" placeholder="Your Email" value='a'/>
-					<a href="#" id="feedback-input-email-helper" class="modal-trigger feedback-input-helper">?</a>
+					<input id="feedback-input-email" class="feedback-input" type="email" placeholder="Your Email" value='a'/>
+					<a href="#" id="feedback-input-email-helper" class="modal-toggle feedback-input-helper" data-modal-target="modal-email">?</a>
 				</div>
 				<div id="feedback-input-submit-container" class="feedback-input-bottom-col col">
 					<div id="feedback-input-submit">
@@ -51,7 +56,11 @@
 		<div id="feedback-responses-inner">
 			<div id="feedback-responses-list">
 				<?php
-				$comments = get_comments();
+				$ID = get_the_ID();
+				$args = array(
+					'post_id' => $ID,
+				);
+				$comments = get_comments( $args );
 				foreach($comments as $comment) : ?>
 					<div class="response-slide">
 						<p class="response-slide-content">

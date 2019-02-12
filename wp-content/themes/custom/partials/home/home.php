@@ -8,7 +8,7 @@
 			);
 			$prompts_query = new WP_Query( $args );
 			while ( $prompts_query->have_posts() ) : $prompts_query->the_post(); ?>
-				<div class="col-4 home-prompt-col">
+				<div class="col-12 col-md-6 col-lg-4 home-prompt-col">
 					<a href="<?php the_permalink(); ?>" class="display-block">
 						<div class="home-prompt-col-inner">
 							<?php 

@@ -1,89 +1,89 @@
 
-$modal-padding: 20px;
+// $modal-padding: 20px;
 
-.modal{
-	position: fixed;
-	width: calc(100% - #{$modal-padding*2});
-	height: calc(100% - #{$modal-padding*2});
-	top: $modal-padding;
-	left: $modal-padding;
-	z-index: 11;
-	opacity: 0;
-	transition: all $modal-transition;
+// .modal{
+// 	position: fixed;
+// 	width: calc(100% - #{$modal-padding*2});
+// 	height: calc(100% - #{$modal-padding*2});
+// 	top: $modal-padding;
+// 	left: $modal-padding;
+// 	z-index: 11;
+// 	opacity: 0;
+// 	transition: all $modal-transition;
 
-	//@media only screen and (min-width: 1025px){
-		transform: scale(0);
-	//}
-	//@media only screen and (max-width: 1024px){
-		//left: 150%;
-	//}
+// 	//@media only screen and (min-width: 1025px){
+// 		transform: scale(0);
+// 	//}
+// 	//@media only screen and (max-width: 1024px){
+// 		//left: 150%;
+// 	//}
 
-	&.on{
-		transition: all $modal-transition;
-		opacity: 1;
-		//@media only screen and (min-width: 1025px){
-			transform: scale(1);
-		//}
-		//@media only screen and (max-width: 1024px){
-			//left: 0%;
-		//}
-	}
+// 	&.on{
+// 		transition: all $modal-transition;
+// 		opacity: 1;
+// 		//@media only screen and (min-width: 1025px){
+// 			transform: scale(1);
+// 		//}
+// 		//@media only screen and (max-width: 1024px){
+// 			//left: 0%;
+// 		//}
+// 	}
 
-	&.scroll{
-		overflow: scroll;
-	}
-}
+// 	&.scroll{
+// 		overflow: scroll;
+// 	}
+// }
 
-#modal-close{
-	position: fixed;
-	top: 50px;
-	right: 50px;
-	height: 35px;
-	width: 35px;
-	z-index: 12;
-	text-align: center;
-	background: $yellow;
-	border-radius: 100%;
+// #modal-close{
+// 	position: fixed;
+// 	top: 50px;
+// 	right: 50px;
+// 	height: 35px;
+// 	width: 35px;
+// 	z-index: 12;
+// 	text-align: center;
+// 	background: $yellow;
+// 	border-radius: 100%;
 
-	@include transition(transform $modal-transition);
-	@include transform(translate(100px, 0%));
+// 	@include transition(transform $modal-transition);
+// 	@include transform(translate(100px, 0%));
 
-	.icon:before{
-		font-size: 35px;
-		line-height: 30px;
-		color: white;
-		top: 3px;
-	}
-}
+// 	.icon:before{
+// 		font-size: 35px;
+// 		line-height: 30px;
+// 		color: white;
+// 		top: 3px;
+// 	}
+// }
 
-#blanket{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 8;
-	left: 200%;
-	@include transition(opacity .1s);
-	opacity: 0;
-	background: transparentize($dark, .5);
-}
+// #blanket{
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// 	height: 100%;
+// 	z-index: 8;
+// 	left: 200%;
+// 	@include transition(opacity .1s);
+// 	opacity: 0;
+// 	background: transparentize($dark, .5);
+// }
 
-//body styles
-.modal-on{
-	overflow: hidden;
+// //body styles
+// .modal-on{
+// 	overflow: hidden;
 
-	#modal-close{
-		@include transform(translate(0%, 0%));
-	}
+// 	#modal-close{
+// 		@include transform(translate(0%, 0%));
+// 	}
 
-	#blanket{
-		left: 0;
-		opacity: 1;
-	}
+// 	#blanket{
+// 		left: 0;
+// 		opacity: 1;
+// 	}
 
-	.modal-person-blanket{
-		opacity: 1;
-	}
+// 	.modal-person-blanket{
+// 		opacity: 1;
+// 	}
 
-}
+// }
