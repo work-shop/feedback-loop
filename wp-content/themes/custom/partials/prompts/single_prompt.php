@@ -1,5 +1,8 @@
-<div id="feedback">
+<div id="feedback" data-prompt-id="<?php echo get_the_ID(); ?>">
 	<section id="feedback-prompt">
+
+        <?php get_template_part('partials/prompts/error_pane'); ?>
+
 		<div id="feedback-prompt-top">
 			<?php
 			$term_list = wp_get_post_terms($post->ID, 'artworks');
