@@ -23,8 +23,9 @@ import { dropdowns } from './dropdowns.js';
 import { menuToggle } from './menu-toggle.js';
 import { responsesToggle } from './responses-toggle.js';
 import { ui } from './ui.js';
+import { submissionWorkflow } from './submission-workflow.js';
 
-//must use 
+//must use
 livereload();
 loading(config.loading);
 linksNewtab(config.linksNewtab);
@@ -42,3 +43,4 @@ dropdowns(config.dropdowns);
 menuToggle(config.menuToggle);
 responsesToggle();
 ui();
+submissionWorkflow();
