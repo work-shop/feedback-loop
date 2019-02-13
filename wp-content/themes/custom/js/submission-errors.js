@@ -61,7 +61,7 @@ class SubmissionErrors {
         this.errorTimeout = 120000;
         this.timeout = null;
 
-        $( this.errorPaneCloseButtonSelector ).on('click', this.hideErrorBox.bind( this ) );
+        $( this.errorPaneCloseButtonSelector ).click( this.hideErrorBox.bind( this ) );
     }
 
 

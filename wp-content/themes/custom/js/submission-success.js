@@ -14,7 +14,7 @@ class SubmissionSuccess {
         this.timeout = null;
         this.inputSelectors = inputSelectors;
 
-        $( this.thankYouPaneCloseButtonSelector ).on('click', this.dismissThankYouPane.bind(this) );
+        $( this.thankYouPaneCloseButtonSelector ).click( this.dismissThankYouPane.bind(this) );
     }
 
 

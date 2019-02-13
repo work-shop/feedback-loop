@@ -41,7 +41,7 @@ function submissionWorkflow() {
         successManager = new SubmissionSuccess(inputSelectors);
         requestManager = new WPRequestManager(errorsManager, successManager, inputSelectors);
 
-        $( inputSelectors.submitButtonId ).on( 'click', handleSubmitRequest );
+        $( inputSelectors.submitButtonId ).click( handleSubmitRequest );
 
     } );
 }
