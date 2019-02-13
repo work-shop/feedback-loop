@@ -92,17 +92,17 @@ $keyboard-height: 397px;
 
 	.feedback-prompt-artwork-artist{
 		width: calc(100% - #{$about-button-width});
-		&:after{
-			content: '';
-			display: block;
-			width: 100px;
-			height: 2px;
-			background: white;
-			//position: absolute;
-			margin-top: $prompt-padding/2;
-			bottom: 0;
-			left: $prompt-padding;
-		}
+		// &:after{
+		// 	content: '';
+		// 	display: block;
+		// 	width: 100px;
+		// 	height: 2px;
+		// 	background: white;
+		// 	//position: absolute;
+		// 	margin-top: $prompt-padding/2;
+		// 	bottom: 0;
+		// 	left: $prompt-padding;
+		// }
 	}
 
 	.feedback-prompt-text{
