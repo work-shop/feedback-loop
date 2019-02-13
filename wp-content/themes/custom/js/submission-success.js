@@ -66,7 +66,7 @@ class SubmissionSuccess {
      * a successful submission.
      */
     clearResponses() {
-        $( this.inputSelectors.inputTextareaId ).text('');
+        $( this.inputSelectors.inputTextareaId ).text('').val('');
         $( this.inputSelectors.nameFieldId ).val('');
         $( this.inputSelectors.emailFieldId ).val('');
     }
