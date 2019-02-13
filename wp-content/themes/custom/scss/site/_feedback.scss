@@ -152,7 +152,6 @@ $keyboard-height: 400px;
 		width: 100%;
 		height: $input-top-height;	
 		height: $input-top-height;
-		//padding: $input-padding;
 		//border: 1px solid red;
 
 		textarea{
@@ -160,10 +159,10 @@ $keyboard-height: 400px;
 			width: 101%;
 			height: 100%;
 			display: block;
-			padding: $input-padding;
+			padding: $input-padding/2 $input-padding;
 			background: $tan;
 			border: none;
-			font-size: 27px;
+			font-size: 24px;
 			transition: all .25s;
 			border-radius: 0;
 			animation: pulse 3s infinite;
@@ -580,11 +579,11 @@ body.responses-closed{
 }
 
 $viewport-height: 768px;
-$focus-prompt-height: 120px;
+$focus-prompt-height: 80px;
 $focus-input-height: ($viewport-height - $keyboard-height) - $focus-prompt-height;
 
 body.focus-on{
-	// border: 10px solid red;
+	// border: 5px solid red;
 
 	#feedback-prompt{
 		height: $focus-prompt-height;
@@ -607,7 +606,7 @@ body.focus-on{
 			top: 0;
 
 			.feedback-prompt-text{
-				font-size: 27px;
+				font-size: 18px;
 			}
 		}
 	}
