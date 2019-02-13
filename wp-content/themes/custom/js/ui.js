@@ -33,6 +33,9 @@ function ui(){
 	function toggleFocus(){
 		if( focused ){
 			$('body').removeClass('focus-off').addClass('focus-on');
+			$('html,body').animate({
+				scrollTop: 0
+			}, 0);
 		} else{
 			$('body').removeClass('focus-on').addClass('focus-off');
 		}

@@ -163,7 +163,7 @@ $keyboard-height: 400px;
 			padding: $input-padding;
 			background: $tan;
 			border: none;
-			font-size: 30px;
+			font-size: 27px;
 			transition: all .25s;
 			border-radius: 0;
 			animation: pulse 3s infinite;
@@ -579,9 +579,9 @@ body.responses-closed{
 
 }
 
-
+$viewport-height: 768px;
 $focus-prompt-height: 120px;
-$focus-input-height: $keyboard-height - $focus-prompt-height;
+$focus-input-height: ($viewport-height - $keyboard-height) - $focus-prompt-height;
 
 body.focus-on{
 	// border: 10px solid red;
