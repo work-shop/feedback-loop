@@ -37,9 +37,6 @@ class WPRequestManager {
 
         self.errorsManager.hideErrorBox();
 
-        console.log('submitRequest invoked!');
-        console.log('Assumption: at this stage the email, name, and response are all wellformed.');
-
         self.wp.comments().create({
 
             post: self.getPromptId(),
