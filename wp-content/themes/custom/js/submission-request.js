@@ -1,7 +1,7 @@
 'use strict';
 
 const WPAPI = require('wpapi');
-const rest_endpoint = 'http://localhost:8080/wp-json/';
+const rest_endpoint = 'http://feedbackloop.kinsta.cloud/wp-json/';
 
 class WPRequestManager {
 
