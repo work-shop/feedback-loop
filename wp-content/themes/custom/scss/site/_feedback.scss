@@ -46,7 +46,7 @@ $errors-color-background: #F5E8E5;
 
 $thankyou-color: lighten(green,8%);
 
-
+$keyboard-height: 400px;
 
 
 /* PROMPT */
@@ -580,8 +580,43 @@ body.responses-closed{
 }
 
 
+$focus-prompt-height: 120px;
+$focus-input-height: $keyboard-height - $focus-prompt-height;
+
 body.focus-on{
 	// border: 10px solid red;
+
+	#feedback-prompt{
+		height: $focus-prompt-height;
+
+		#feedback-about-button{
+			display: none !important;
+		}
+
+		#feedback-prompt-top{
+			height: 0;
+			padding: 0;
+			overflow: hidden;
+			display: none;
+			//border: 10px solid red;
+		}
+
+		#feedback-prompt-bottom{
+			height: $focus-prompt-height;
+			padding: $prompt-padding/2 $prompt-padding;
+			top: 0;
+
+			.feedback-prompt-text{
+				font-size: 27px;
+			}
+		}
+	}
+
+	#feedback-input{
+		top: $focus-prompt-height;
+		height: $focus-input-height;
+	}
+
 }
 
 
