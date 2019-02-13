@@ -46,7 +46,7 @@ $errors-color-background: #F5E8E5;
 
 $thankyou-color: lighten(green,8%);
 
-$keyboard-height: 400px;
+$keyboard-height: 403px;
 
 
 /* PROMPT */
@@ -523,6 +523,23 @@ $keyboard-height: 400px;
 	.feedback-input-thank-you-text{
 		font-size: 19px;
 		line-height: 1.6;
+	}
+
+	#feedback-input-thank-you-done{
+		width: 200px;
+		margin: 0 auto;
+		span{
+			background: $yellow;
+			color: white;
+			display: block;
+			padding: 5px;
+			text-align: center;
+			border-radius: 20px;
+			@extend .bold;
+			font-size: 14px;
+			@extend .tracked;
+			@extend .uppercase;
+		}
 	}
 
 }

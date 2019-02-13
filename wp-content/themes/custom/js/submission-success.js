@@ -9,7 +9,7 @@ class SubmissionSuccess {
      */
     constructor( inputSelectors ) {
         this.thankYouPaneSelector = '#feedback-input-thank-you-pane';
-        this.thankYouPaneCloseButtonSelector = '#feedback-input-thank-you-pane .done-button';
+        this.thankYouPaneCloseButtonSelector = '#feedback-input-thank-you-done';
         this.thankYouPaneTimeout = 120000;
         this.timeout = null;
         this.inputSelectors = inputSelectors;

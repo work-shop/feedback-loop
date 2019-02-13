@@ -11,7 +11,10 @@ function ui(){
 		$( '.feedback-input' ).focus(function() {
 			console.log('focus in');
 			focused = true;
-			toggleFocus();
+			setTimeout(function() {
+				toggleFocus();	
+			}, 10);
+			
 		});
 
 		$( '.feedback-input' ).focusout(function() {
@@ -22,7 +25,10 @@ function ui(){
 			} else{
 				focused = false;
 			}
-			toggleFocus();
+			setTimeout(function() {
+				toggleFocus();	
+			}, 10);
+			
 
 		});
 

@@ -10,6 +10,9 @@
 			<h4 class="brand feedback-input-thank-you-text">
 				<?php the_field('thank_you_details', 'options'); ?>
 			</h4>
+			<div id="feedback-input-thank-you-done">
+				<span>I'm All Done</span>
+			</div>
 		</div>
 	</div>
 </div>
