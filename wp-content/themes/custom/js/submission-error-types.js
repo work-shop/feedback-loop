@@ -58,4 +58,13 @@ const apiErrorChecks = {
 };
 
 
-export { uiErrorChecks, apiErrorChecks };
+const defaultError = function( error ) {
+    return {
+        message: 'Something went wrong on our end! <br/> <span class=\'error-sub-text tiny\'>' + error + '</span>',
+        priority: 1,
+        target: false
+    };
+};
+
+
+export { uiErrorChecks, apiErrorChecks, defaultError };

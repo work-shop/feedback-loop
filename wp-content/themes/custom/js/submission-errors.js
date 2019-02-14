@@ -1,6 +1,6 @@
 'use strict';
 
-import { uiErrorChecks, apiErrorChecks } from './submission-error-types.js';
+import { uiErrorChecks, apiErrorChecks, defaultError } from './submission-error-types.js';
 
 /**
  * These classes mark various ui states
@@ -116,7 +116,16 @@ class SubmissionErrors {
      */
     renderAPIErrors( error ){
         console.log( error );
-        this.displayErrorBox( apiErrorChecks[ error.message ] );
+
+        const niceError = apiErrorChecks[ error.message ];
+
+        if ( typeof niceError !== 'undefined' ) {
+            this.displayErrorBox( niceError );
+        } else {
+            this.displayErrorBox( defaultError( error.message )  );
+        }
+
+
     }
 
     /**
@@ -131,7 +140,7 @@ class SubmissionErrors {
 
         this.errableElements.forEach( function( selector ) { $( selector ).removeClass(erroredClassName);});
 
-        text.text( error.message );
+        text.html( error.message );
         pane.removeClass(inactiveClassName).addClass(activeClassName);
         $( error.target ).addClass(erroredClassName);
 
