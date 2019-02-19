@@ -13,7 +13,7 @@ class WS_Site_Admin {
         add_action('wp_before_admin_bar_render', array($this, 'remove_admin_bar_items'));
 
         // add_action('artworks_edit_form', array( $this, 'hide_artworks_description_box' ), 10, 2 );
-        add_action('artworks_add_form', array( $this, 'hide_artworks_description_box' ), 10, 2 );
+        add_action('artworks_add_form', array( $this, 'hide_artworks_description_box' ), 10, 1 );
 
         add_filter( 'get_user_metadata', array( $this, 'pages_per_page_wpse_23503'), 10, 4 );
 
@@ -32,7 +32,7 @@ class WS_Site_Admin {
     }
 
 
-    public function hide_artworks_description_box( $tag, $taxonomy ) {
+    public function hide_artworks_description_box( $tag ) {
         echo '<style>.term-description-wrap, .term-parent-wrap {display:none;}</style>';
     }
 
