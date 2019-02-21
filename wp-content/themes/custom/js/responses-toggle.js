@@ -24,13 +24,13 @@ function responsesToggle() {
 			$('#feedback-responses').removeClass('closed').addClass('open');
 			$('body').removeClass('responses-closed').addClass('responses-open');
 			$('#feedback-responses-label a').text('ﬂ');
-			analytics.reportInfoButtonClicked( 'responses_opened' );
+			analytics.reportResponsesPaneClicked( 'responses_opened' );
 		}
 		else if($('body').hasClass('responses-open')){
 			$('#feedback-responses').removeClass('open').addClass('closed');
 			$('body').removeClass('responses-open').addClass('responses-closed');
 			$('#feedback-responses-label a').text('View Responses');
-			analytics.reportInfoButtonClicked( 'responses_closed' );
+			analytics.reportResponsesPaneClicked( 'responses_closed' );
 		}
 
 	}	

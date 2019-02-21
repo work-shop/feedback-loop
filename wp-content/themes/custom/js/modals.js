@@ -32,7 +32,9 @@ function modals( config ) {
 			e.preventDefault();
 			var target = $(this).data('modal-target');
 			
-			analytics.reportInfoButtonClicked( target );
+			if ( target == 'modal-about' || target == 'modal-name' || target == 'modal-email' ) {
+				analytics.reportInfoButtonClicked( target );
+			}
 
 			modalToggle(target, false);	
 		});
@@ -41,7 +43,9 @@ function modals( config ) {
 			e.preventDefault();
 			var target = $(this).data('modal-target');
 
-			analytics.reportInfoButtonClicked( target );
+			if ( target == 'modal-about' || target == 'modal-name' || target == 'modal-email' ) {
+				analytics.reportInfoButtonClicked( target );
+			}
 
 			modalToggle(target, true);	
 		});

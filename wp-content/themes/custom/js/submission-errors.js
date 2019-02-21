@@ -138,6 +138,8 @@ class SubmissionErrors {
      */
     displayErrorBox( error ) {
 
+        var self = this;
+
         let pane = $( this.errorPaneSelector );
         let text = $( this.errorPaneTextSelector );
 

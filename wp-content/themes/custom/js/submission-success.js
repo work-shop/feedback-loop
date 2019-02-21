@@ -15,7 +15,7 @@ class SubmissionSuccess {
         this.inputSelectors = inputSelectors;
         this.analytics = analytics;
 
-        $( this.thankYouPaneCloseButtonSelector ).click( this.dismissThankYouPane.bind(this) );
+        $( this.thankYouPaneCloseButtonSelector ).click( this.dismissThankYouPane.bind(this, false) );
     }
 
 
@@ -38,7 +38,7 @@ class SubmissionSuccess {
     showThankYouPane() {
 
         $( this.thankYouPaneSelector ).removeClass('inactive').addClass('active');
-        this.timeout = setTimeout( this.dismissThankYouPane.bind(this), this.thankYouPaneTimeout );
+        this.timeout = setTimeout( this.dismissThankYouPane.bind(this, true), this.thankYouPaneTimeout );
 
     }
 
@@ -47,11 +47,17 @@ class SubmissionSuccess {
      * This method dismisses the thankyou pane, either by being called after a
      * timeout, or after the user clicks the dismiss button `.close-button`.
      */
-    dismissThankYouPane() {
+    dismissThankYouPane( timed_out = false ) {
 
         if ( this.timeout !== null ) {
             clearTimeout( this.timeout );
             this.timeout = null;
+        }
+
+        if ( timed_out ) {
+            this.analytics.reportThankYouPageTimeout();
+        } else {
+            this.analytics.reportThankYouPageClosure();
         }
 
         this.clearResponses();
