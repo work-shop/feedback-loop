@@ -180,7 +180,8 @@ class SubmissionAnalytics {
             console.log( 'event:', action, category, label );
 
         } else {
-            
+
+            console.log( 'event:', action, category, label );
             this.gtag( 'event', action, { event_category: category, event_label: label, method: 'Google', non_interaction: non_interaction });
 
         }
