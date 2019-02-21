@@ -7,12 +7,13 @@ class SubmissionSuccess {
     /**
      * The SubmissionSuccess class handles displaying and dismissing the thankyou pane.
      */
-    constructor( inputSelectors ) {
+    constructor( inputSelectors, analytics ) {
         this.thankYouPaneSelector = '#feedback-input-thank-you-pane';
         this.thankYouPaneCloseButtonSelector = '#feedback-input-thank-you-done';
         this.thankYouPaneTimeout = 120000;
         this.timeout = null;
         this.inputSelectors = inputSelectors;
+        this.analytics = analytics;
 
         $( this.thankYouPaneCloseButtonSelector ).click( this.dismissThankYouPane.bind(this) );
     }

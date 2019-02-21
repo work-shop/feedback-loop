@@ -10,11 +10,12 @@ class WPRequestManager {
      * the WP API, and dispatching success or error responses off to the
      * classes that manage those funtions.
      */
-    constructor( errorsManager, successManager, inputSelectors ) {
+    constructor( errorsManager, successManager, inputSelectors, analytics ) {
         this.wp = new WPAPI({ endpoint: rest_endpoint });
         this.errorsManager = errorsManager;
         this.successManager = successManager;
         this.inputSelectors = inputSelectors;
+        this.analytics = analytics;
     }
 
 
@@ -46,6 +47,7 @@ class WPRequestManager {
 
         }).then(( response ) => {
 
+            self.analytics.reportFormSubmissionSuccess( content );
             self.successManager.renderSuccess( response );
 
         }).catch(( error ) => {

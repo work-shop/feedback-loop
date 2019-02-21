@@ -20,14 +20,16 @@ const activeClassName = 'active';
 
 // NOTE: assumes the array of errors is a ascending-sorted partially-ordered set in the priority key.
 
-function getPriorityErrors( errors ) {
+function getPriorityErrors( errors, analytics ) {
     if ( errors.blame.length === 0 ) { throw new Error('getPriorityErrors received an empty error array!'); }
-
-    console.log( errors );
 
     let priority = errors.blame[0].priority; // gauranteed to exist at this point.
 
-    return errors.blame.filter( function( error ) { return error.priority === priority; });
+    let priority_errors = errors.blame.filter( function( error ) { return error.priority === priority; });
+
+    analytics.reportFormSubmissionError( priority_errors[0] );
+
+    return priority_errors;
 
 }
 
@@ -52,7 +54,7 @@ class SubmissionErrors {
      * highlighting the various input fields that can be affected by various
      * errors that may come from the UI, or from the API.
      */
-    constructor() {
+    constructor( inputSelectors, analytics ) {
         this.errorPaneSelector = '#error-pane';
         this.errorPaneHeadingSelector = '#error-pane .error-header';
         this.errorPaneTextSelector = '#error-pane .error-text';
@@ -60,6 +62,7 @@ class SubmissionErrors {
         this.errableElements = ['#feedback-input-textarea', '#feedback-input-name', '#feedback-input-email'];
         this.errorTimeout = 120000;
         this.timeout = null;
+        this.analytics = analytics;
 
         $( this.errorPaneCloseButtonSelector ).click( this.hideErrorBox.bind( this ) );
     }
@@ -92,7 +95,7 @@ class SubmissionErrors {
         }, initialErrorState() );
 
         if ( errors.error ) {
-            return getPriorityErrors( errors );
+            return getPriorityErrors( errors, this.analytics );
         } else {
             return [];
         }
@@ -105,7 +108,6 @@ class SubmissionErrors {
      * in the error box.
      */
     renderUIErrors( errors ) {
-        console.log( errors );
         this.displayErrorBox( errors[0] );
     }
 
@@ -115,16 +117,17 @@ class SubmissionErrors {
      * in the error box.
      */
     renderAPIErrors( error ){
-        console.log( error );
 
         const niceError = apiErrorChecks[ error.message ];
 
         if ( typeof niceError !== 'undefined' ) {
+            this.analytics.reportFormSubmissionError( niceError );
             this.displayErrorBox( niceError );
         } else {
-            this.displayErrorBox( defaultError( error.message )  );
+            let err = defaultError( error.message );
+            this.analytics.reportFormSubmissionError( err );
+            this.displayErrorBox( err );
         }
-
 
     }
 

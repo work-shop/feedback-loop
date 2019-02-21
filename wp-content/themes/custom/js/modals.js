@@ -2,6 +2,9 @@
 
 var modalProperties = {};
 
+import { SubmissionAnalytics } from './submission-analytics.js';
+
+
 function modals( config ) {
 	//console.log('modals.js loaded');
 
@@ -12,6 +15,8 @@ function modals( config ) {
 	modalProperties.modalOffBodyClass = config.modalOffBodyClass || 'modal-off';
 
 	$( document ).ready( function() {
+
+		const analytics = new SubmissionAnalytics();
 
 		$( '.' + modalProperties.modalCloseClass ).click(function(e){
 			e.preventDefault();
@@ -26,12 +31,18 @@ function modals( config ) {
 		$( '.' + modalProperties.modalToggleClass ).click(function(e){
 			e.preventDefault();
 			var target = $(this).data('modal-target');
+			
+			analytics.reportInfoButtonClicked( target );
+
 			modalToggle(target, false);	
 		});
 
 		$('.modal-swap').click(function(e){
 			e.preventDefault();
 			var target = $(this).data('modal-target');
+
+			analytics.reportInfoButtonClicked( target );
+
 			modalToggle(target, true);	
 		});
 

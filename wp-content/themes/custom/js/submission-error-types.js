@@ -9,7 +9,8 @@ const uiErrorChecks = [
         message: 'Looks like you haven\'t entered a response yet.',
         priority: 0,
         target: '#feedback-input-textarea',
-        active: true
+        active: true,
+        label: 'error_empty_response'
     }; },
 
     // NOTE: This rule is commented out, as we're not requiring individuals to
@@ -41,19 +42,22 @@ const apiErrorChecks = {
     'Invalid parameter(s): author_email': {
         message: 'Looks like you mis-entered your email address below!',
         priority: 1,
-        target: '#feedback-input-email'
+        target: '#feedback-input-email',
+        label: 'error_invalid_email'
     },
 
     'Creating a comment requires valid author name and email values.': {
         message: 'Looks like you\'re missing a name an email!',
         priority: 1,
-        target: '#feedback-input-name, #feedback-input-email'
+        target: '#feedback-input-name, #feedback-input-email',
+        label: 'error_missing_email'
     },
 
     'Duplicate comment detected; it looks as though you&#8217;ve already said that!': {
         message: 'Looks like this bit of feedback was already posted!',
         priority: 1,
-        target: '#feedback-input-textarea'
+        target: '#feedback-input-textarea',
+        label: 'error_duplicate_comment'
     }
 };
 
@@ -62,7 +66,8 @@ const defaultError = function( error ) {
     return {
         message: 'Something went wrong on our end! <br/> <span class=\'error-sub-text tiny\'>' + error + '</span>',
         priority: 1,
-        target: false
+        target: false,
+        label: 'error_unrecognized'
     };
 };
 

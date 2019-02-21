@@ -5,6 +5,8 @@ import { WPRequestManager } from './submission-request.js';
 import { SubmissionErrors } from './submission-errors.js';
 import { SubmissionSuccess } from './submission-success.js';
 
+import { SubmissionAnalytics } from './submission-analytics.js';
+
 
 /**
  * These selectors identify
@@ -27,6 +29,7 @@ const inputSelectors = {
 var requestManager = null;
 var errorsManager = null;
 var successManager = null;
+var analytics = null;
 
 
 /**
@@ -35,11 +38,12 @@ var successManager = null;
  * entrypoint handler on the request submission.
  */
 function submissionWorkflow() {
-    $( document ).ready( function() {
+    $( document ).ready( function() {      
 
-        errorsManager = new SubmissionErrors(inputSelectors);
-        successManager = new SubmissionSuccess(inputSelectors);
-        requestManager = new WPRequestManager(errorsManager, successManager, inputSelectors);
+        analytics = new SubmissionAnalytics( gtag );
+        errorsManager = new SubmissionErrors(inputSelectors, analytics);
+        successManager = new SubmissionSuccess(inputSelectors, analytics);
+        requestManager = new WPRequestManager(errorsManager, successManager, inputSelectors, analytics);
 
         $( inputSelectors.submitButtonId ).click( handleSubmitRequest );
 
