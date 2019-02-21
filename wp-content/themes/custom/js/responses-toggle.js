@@ -7,7 +7,7 @@ function responsesToggle() {
 
 	$(document).ready( function() {
 
-		const analytics = new SubmissionAnalytics();
+		const analytics = new SubmissionAnalytics( gtag );
 
 		$('.feedback-responses-toggle').click(function(e) {
 			e.preventDefault();

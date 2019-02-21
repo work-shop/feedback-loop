@@ -16,7 +16,7 @@ function modals( config ) {
 
 	$( document ).ready( function() {
 
-		const analytics = new SubmissionAnalytics();
+		const analytics = new SubmissionAnalytics( gtag );
 
 		$( '.' + modalProperties.modalCloseClass ).click(function(e){
 			e.preventDefault();
