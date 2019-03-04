@@ -64,17 +64,27 @@
 				$args = array(
 					'post_id' => $ID,
 				);
-				$comments = get_comments( $args );
-				foreach($comments as $comment) : ?>
-					<div class="response-slide">
+				$comments = get_approved_comments( $ID, $args );
+
+                if ( !empty( $comments ) ) :
+
+    				foreach($comments as $comment) : ?>
+    					<div class="response-slide">
+    						<p class="response-slide-content">
+    							<span class="response-slide-content-quotation-mark">"</span><?php echo($comment->comment_content); ?>
+    						</p>
+    						<h4 class="response-slide-author italic">
+    							— <?php echo($comment->comment_author); ?>
+    						</h4>
+    					</div>
+    				<?php endforeach; ?>
+                <?php else: ?>
+                    <div class="response-slide">
 						<p class="response-slide-content">
-							<span class="response-slide-content-quotation-mark">"</span><?php echo($comment->comment_content); ?>
+							<span class="response-slide-content-quotation-mark"></span><?php the_field('no_responses_yet_text', 'option'); ?>
 						</p>
-						<h4 class="response-slide-author italic">
-							— <?php echo($comment->comment_author); ?>
-						</h4>
 					</div>
-				<?php endforeach; ?>
+                <?php endif; ?>
 				<div id="feedback-responses-list-end">
 				</div>
 			</div>
