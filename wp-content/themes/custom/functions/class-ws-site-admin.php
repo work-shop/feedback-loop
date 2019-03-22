@@ -14,6 +14,7 @@ class WS_Site_Admin {
 
         add_action('artworks_edit_form', array( $this, 'hide_artworks_description_box' ), 10, 1 );
         add_action('artworks_add_form', array( $this, 'hide_artworks_description_box' ), 10, 1 );
+        add_action('add_meta_boxes', array('WS_Prompt', 'add_comment_download_box'));
 
         add_filter( 'get_user_metadata', array( $this, 'pages_per_page_wpse_23503'), 10, 4 );
 
@@ -60,7 +61,7 @@ class WS_Site_Admin {
         add_post_type_support('prompts', 'comments');
         remove_menu_page('index.php');  // Remove the dashboard link from the Wordpress sidebar.
         remove_menu_page('edit.php'); // remove default post type.
-        remove_menu_page('edit.php?post_type=page'); // remove default post type.
+        remove_menu_page('edit.php?post_type=page'); // remove default page type.
         remove_menu_page('upload.php'); // remove default post type.
 
         add_menu_page('artworks', 'Artworks', 'manage_options', 'edit-tags.php?taxonomy=artworks&post_type=prompts', '', 'dashicons-format-image', 5);

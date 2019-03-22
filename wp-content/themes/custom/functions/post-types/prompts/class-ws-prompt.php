@@ -8,6 +8,8 @@ class WS_Prompt extends WS_Custom_Post_Type {
 
     public static $plural_name = 'Prompts';
 
+    public static $csv_generator_page_slug = 'csv';
+
     public static $post_options = array(
         'menu_icon'                 => 'dashicons-clipboard',
         'hierarchical'              => false,
@@ -31,6 +33,31 @@ class WS_Prompt extends WS_Custom_Post_Type {
     public static $query_options = array(
 
     );
+
+    /**
+     * Adds a meta-box to the sidebar to allow
+     * for easy comment download for a specific prompt.
+     */
+    public static function add_comment_download_box() {
+        add_meta_box(
+            'prompt_csv_download',
+            'Download Comments',
+            array( 'WS_Prompt', 'render_download_button' ),
+            static::$slug,
+            'normal',
+            'default'
+        );
+    }
+
+    /**
+     *
+     *
+     */
+    public static function render_download_button() {
+        global $post;
+
+        echo '<a class="button" href="' . get_permalink( get_page_by_path( static::$csv_generator_page_slug ) ) . '?id=' . $post->ID . '">Download Comments CSV <span class="screen-reader-text">(downloads a csv of comments for this prompt)</span></a>';
+    }
 
 
     /**
