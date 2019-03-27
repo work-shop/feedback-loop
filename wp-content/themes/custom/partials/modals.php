@@ -48,6 +48,19 @@
 	</div>
 </div>
 
+<div class="modal off bg-white" id="modal-instagram">
+	<div class="modal-container">
+		<div class="row mb2">
+			<div class="col-lg-10">
+				<h4 class="bold mb1">Instagram Handle Usage</h4>
+				<h3 class="">
+					<?php the_field('instagram_usage_message','option'); ?>
+				</h3>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div id="modal-close">
 	<a href="#" class="modal-close">
 		<span class="icon" data-icon="ﬂ">
