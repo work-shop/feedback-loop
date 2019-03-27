@@ -18,7 +18,8 @@ class WS_Prompt extends WS_Custom_Post_Type {
         'supports'                  => array(
                                         'title',
                                         'revisions',
-                                        'comments'
+                                        'comments',
+                                        'custom-fields'
                                     ),
         'rewrite'                   => array(
                                         'slug' => 'prompts',

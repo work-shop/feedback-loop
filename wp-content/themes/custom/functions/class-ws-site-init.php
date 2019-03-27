@@ -16,14 +16,50 @@ class WS_Site {
 		add_filter('show_admin_bar', '__return_false');
 		add_filter('comment_flood_filter', '__return_false');
 
+        add_action('rest_api_init', array( $this, 'register_instagram_handler'));
+
 		new WS_CDN_Url();
 
 	}
 
+
+
+    public function register_instagram_handler( $data ) {
+        register_rest_route( 'feedback/v1', '/instagram/(?P<id>\d+)/(?P<handle>[\w]+)', array(
+            'methods' => 'POST',
+            'callback' => array( $this, 'handle_instagram_route'),
+            'args' => array(
+                'id' => array(
+                    'validate_callback' => function( $param, $request, $key ) {
+                        return is_numeric( $param );
+                    }
+                )
+            )
+
+        ));
+    }
+
+    public function handle_instagram_route( $request ) {
+        $comment_id = $request->get_param('id');
+        $instagram_handle = $request->get_param('handle');
+        $comment = get_comment( $comment_id );
+
+        if ( count( $instagram_handle ) > 30 || !preg_match('/([A-Za-z._])\w+/', $instagram_handle ) ) {
+            return array( 'success' => FALSE, 'id' => (int) $comment_id, 'handle' => $instagram_handle, 'message' => 'Invalid parameter: Malformed instagram handle.' );
+        }
+
+        // NOTE: review other failure cases?
+        // NOTE: This allows for random people to update te instagram fields on comments, assuming they know the comment id.
+
+        update_field( 'instagram', $instagram_handle, $comment );
+
+        return array( 'success' => TRUE, 'id' => (int) $comment_id, 'handle' => $instagram_handle );
+    }
+
+
 	public function register_post_types_and_taxonomies() {
 
 		WS_Prompt::register();
-
 		WS_Artwork::register();
 		WS_Prompt_Status::register();
 

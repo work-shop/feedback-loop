@@ -14,8 +14,17 @@ const uiErrorChecks = [
     }; },
 
     function misformattedInstagram( content ) { return {
-        error: content.maybeInstagram.length > 0 && content.maybeInstagram[0] !== '@',
-        message: 'Whoops, don\'t forget the \'@\' on your instagram handle!',
+        error: content.maybeInstagram.length > 0 && content.maybeInstagram[0] === '@',
+        message: 'Whoops, you don\'t need to include the \'@\' on your instagram handle!',
+        priority: 1,
+        target: '#feedback-input-instagram',
+        active: true,
+        label: 'error_instagram_at_sign'
+    }; },
+
+    function malformedInstagram( content ) { return {
+        error: content.maybeInstagram.length > 31 || !(/^[a-zA-Z0-9._]+$/.test( content.maybeInstagram )),
+        message: 'Whoops, looks like this isn\'t a valid instagram handle!',
         priority: 1,
         target: '#feedback-input-instagram',
         active: true,
@@ -67,6 +76,13 @@ const apiErrorChecks = {
         priority: 1,
         target: '#feedback-input-textarea',
         label: 'error_duplicate_comment'
+    },
+
+    'Invalid parameter: Malformed instagram handle.': {
+        message: 'Looks like this isn\'t a valid instagram handle!',
+        priority: 1,
+        target: '#feedback-input-instagram',
+        label: 'error_invalid_instagram'
     }
 };
 

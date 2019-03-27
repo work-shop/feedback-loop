@@ -43,12 +43,40 @@ class WPRequestManager {
             post: self.getPromptId(),
             author_email: content.maybeEmail,
             author_name: content.maybeName,
-            content: content.maybeResponse
+            content: content.maybeResponse,
 
         }).then(( response ) => {
 
-            self.analytics.reportFormSubmissionSuccess( content );
-            self.successManager.renderSuccess( response );
+            if ( content.maybeInstagram.length > 0 ) {
+
+                $.ajax( {
+                    type: 'POST',
+                    url: rest_endpoint + '/feedback/v1/instagram/' + response.id + '/' + content.maybeInstagram,
+                })
+                .done( function( data ) {
+                    console.log( data )
+
+                    if ( data.success ) {
+
+                        self.analytics.reportFormSubmissionSuccess( content );
+                        self.successManager.renderSuccess( response );
+
+                    } else {
+                        self.errorsManager.renderAPIErrors( data );
+                    }
+
+                }).fail( function( xhr, status ) {
+
+                    console.log( status )
+                    self.errorsManager.renderAPIErrors( { message: status } );
+                });
+
+            } else {
+
+                self.analytics.reportFormSubmissionSuccess( content );
+                self.successManager.renderSuccess( response );
+
+            }
 
         }).catch(( error ) => {
 
