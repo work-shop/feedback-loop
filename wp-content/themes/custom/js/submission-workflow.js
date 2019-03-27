@@ -17,7 +17,8 @@ const inputSelectors = {
     inputTextareaId: '#feedback-input-textarea',
     nameFieldId: '#feedback-input-name',
     emailFieldId: '#feedback-input-email',
-    submitButtonId: '#feedback-input-submit'
+    instagramFieldId: '#feedback-input-instagram',
+    submitButtonId: '#feedback-input-submit',
 };
 
 
@@ -38,7 +39,7 @@ var analytics = null;
  * entrypoint handler on the request submission.
  */
 function submissionWorkflow() {
-    $( document ).ready( function() {      
+    $( document ).ready( function() {
 
         analytics = new SubmissionAnalytics( gtag );
         errorsManager = new SubmissionErrors(inputSelectors, analytics);
@@ -60,7 +61,8 @@ function gatherContentFromForm() {
     return {
         maybeResponse: $( inputSelectors.inputTextareaId ).val(),
         maybeName: $( inputSelectors.nameFieldId ).val(),
-        maybeEmail: $( inputSelectors.emailFieldId ).val()
+        maybeEmail: $( inputSelectors.emailFieldId ).val(),
+        maybeInstagram: $( inputSelectors.instagramFieldId ).val()
     };
 }
 
@@ -72,6 +74,7 @@ function gatherContentFromForm() {
  */
 function handleSubmitRequest() {
     let content = gatherContentFromForm();
+    console.log( content );
     let errors = errorsManager.gatherUIErrors( content );
 
     if ( errors.length > 0) {

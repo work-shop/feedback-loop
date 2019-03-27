@@ -13,6 +13,15 @@ const uiErrorChecks = [
         label: 'error_empty_response'
     }; },
 
+    function misformattedInstagram( content ) { return {
+        error: content.maybeInstagram.length > 0 && content.maybeInstagram[0] !== '@',
+        message: 'Whoops, don\'t forget the \'@\' on your instagram handle!',
+        priority: 1,
+        target: '#feedback-input-instagram',
+        active: true,
+        label: 'error_bad_instagram'
+    }; }
+
     // NOTE: This rule is commented out, as we're not requiring individuals to
     // submit their names or emails, unless they want to.
     // function emptyName( content ) { return {
