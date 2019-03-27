@@ -42,8 +42,8 @@
 					<a href="#" id="feedback-input-email-helper" class="modal-toggle feedback-input-helper" data-modal-target="modal-email">?</a>
 				</div>
 				<div id="feedback-input-instagram-container" class="feedback-input-bottom-col col">
-					<input id="feedback-input-email" class="feedback-input" type="text" placeholder="Your Instagram" />
-					<a href="#" id="feedback-input-email-helper" class="modal-toggle feedback-input-helper" data-modal-target="modal-instagram">?</a>
+					<input id="feedback-input-instagram" class="feedback-input" type="text" placeholder="Your Instagram" />
+					<a href="#" id="feedback-input-instagram-helper" class="modal-toggle feedback-input-helper" data-modal-target="modal-instagram">?</a>
 				</div>
 				<div id="feedback-input-submit-container" class="feedback-input-bottom-col col">
 					<div id="feedback-input-submit">
