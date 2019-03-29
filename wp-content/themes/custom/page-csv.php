@@ -15,17 +15,19 @@ $comments = get_approved_comments( $ID, $args );
 
 
 // 4. Map the comments into the form we want for the csv.
-$headers = array('id', 'author', 'email', 'date', 'comment');
+$headers = array('id', 'author', 'email', 'instagram', 'date', 'comment');
 
 $comments = array_map( function( $comment ) {
 
     $author = empty($comment->comment_author) ? 'Anonymous' : $comment->comment_author;
+    $instagram = ( $inst = get_field('instagram', $comment ) ) ? '@' . $inst : '';
 
     return array(
         'id' => $comment->comment_ID,
         'author' => $author,
         'email' => $comment->comment_author_email,
-        'date' => (new DateTime($comment->comment_date))->format('F jS, Y'),
+        'instagram' => $instagram,
+        'date' => (new DateTime($comment->comment_date))->format('F j, Y'),
         'comment' => $comment->comment_content
     );
 }, $comments );
