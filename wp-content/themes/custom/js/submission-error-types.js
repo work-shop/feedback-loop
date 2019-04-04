@@ -23,7 +23,7 @@ const uiErrorChecks = [
     }; },
 
     function malformedInstagram( content ) { return {
-        error: content.maybeInstagram.length > 31 || !(/^[a-zA-Z0-9._]+$/.test( content.maybeInstagram )),
+        error: content.maybeInstagram.length > 0 && (content.maybeInstagram.length > 31 || !(/^[a-zA-Z0-9._]+$/.test( content.maybeInstagram ))),
         message: 'Whoops, looks like this isn\'t a valid instagram handle!',
         priority: 1,
         target: '#feedback-input-instagram',
